@@ -1,0 +1,74 @@
+
+#include <stdlib.h>
+#include <stdio.h>
+struct Node{
+    int data;
+    struct Node *next , *prev;
+};
+
+struct Node *head;
+
+struct Node *GetNewNode(int x){
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = x;
+    newNode->prev = NULL;
+    newNode->next = NULL;
+    return newNode;
+}
+
+void InsertAtHead(int x){
+    struct Node* temp = GetNewNode(x);
+    if(head == NULL){
+        head = temp;
+        return;
+    }
+    head->prev = temp;
+    temp->next = head;
+    head = temp;
+}
+
+void InsertAtEnd(int x){
+    struct Node* newNode = GetNewNode(x);
+    if(head == NULL){
+        head = newNode;
+        return;
+    }
+    struct Node* temp = head;
+    while(temp->next != NULL){
+        temp = temp->next;
+    }
+    temp->next = newNode;
+    newNode->prev = temp;
+    newNode->next = NULL;
+    
+}
+
+
+void forwardprint(struct Node* temp){
+    if(temp == NULL){
+        return;
+    }
+    printf("%d ",temp->data);
+    forwardprint(temp->next);
+    }
+    
+void reverseprint(){
+    struct Node* temp = head;
+    if(temp == NULL)return;
+    while(temp->next != NULL){
+        temp = temp->next;
+    }
+    printf("Reverse:");
+    while(temp != NULL){
+        printf("%d ", temp->data);
+        temp = temp->prev;
+    }
+}
+
+int main(){
+    head = NULL;
+    InsertAtHead(1);InsertAtHead(2);InsertAtHead(3);InsertAtEnd(4);InsertAtEnd(5);InsertAtEnd(6);
+    printf("forward:");forwardprint(head);printf("\n");
+    printf("reverse:");reverseprint();printf("\n");
+    return 0;
+}

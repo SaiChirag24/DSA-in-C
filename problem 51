@@ -1,0 +1,28 @@
+//Get a string and a character from the user and find all the positions where the character present and print it.
+//E.g.: string : hellosurabee  character : e
+//Answer : 2, 11, 12
+
+#include <string.h>
+#include <stdio.h>
+
+int main() {
+    char str[50];
+    char c;
+    int got = 0;
+    printf("enter the string:");
+    scanf("%s",str);
+    printf("enter the character to find:");
+    scanf(" %c",&c);
+    for(int i = 0;i < strlen(str);i++){
+        if(str[i] == c){
+            printf("%d, ",i+1);
+            got=got+1;
+        }
+    }
+    if(got == 0){
+        printf("charater not found");
+    }
+    
+
+    return 0;
+}

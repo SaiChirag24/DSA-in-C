@@ -1,0 +1,44 @@
+/*Question: Get a main string and sub string. Check the sub string in main string
+an print the position.
+
+E.g.: string : hellosurabee
+substring : sura
+Answer : 6 */
+
+
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char str[50], str1[50];
+    int found = 0;  
+    printf("Enter the string: ");
+    scanf("%s", str);
+    printf("Enter the substring: ");
+    scanf("%s", str1);
+
+    int str_len = strlen(str);
+    int str1_len = strlen(str1);
+
+    
+    for (int i = 0; i <= (str_len - str1_len); i++) {
+        int j;
+        for (j = 0; j < str1_len; j++) {
+            if (str[i + j] != str1[j]) {
+                break;
+            }
+        }
+        if (j == str1_len) {  
+            printf("Found at %d\n", i+1);
+            found = 1;
+            break;  
+        }
+    }
+
+    if (!found) {
+        printf("Not found\n");
+    }
+
+    return 0;
+}
